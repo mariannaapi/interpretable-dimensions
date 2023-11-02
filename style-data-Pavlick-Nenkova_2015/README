@@ -1,0 +1,147 @@
+###############################################################################
+Formality and complexity scores from our 2015 NAACL short paper
+
+"Inducing Style for Paraphrase and Genre Differentiation".
+
+If you use this data in your work, please use the following citation: 
+
+@InProceedings{PavlickAndNenkova-2015:NAACL,
+  author =  {Ellie Pavlick and Ani Nenkova},
+  title =   {Inducing Style for Paraphrase and Genre Differentiation}
+  booktitle = {North American Association for Computational Linguistics},
+  month     = {June},
+  year      = {2015},
+  address   = {Denver, Colorado},
+  publisher = {Association for Computional Linguistics},
+}
+
+###############################################################################
+This data release contains automatically induced style scores as well as human 
+style ratings for words and phrases along two style dimensions: formality
+and complexity. The data is organized in the following directory structure:
+
+naacl-2015-style-scores/
+  README
+  formality/
+    automatic/pairs
+    automatic/phrase-scores
+    human/pairs
+    human/phrase-scores
+    human/sentence-scores
+  complexity
+    automatic/pairs
+    automatic/phrase-scores
+    human/pairs
+    human/phrase-scores
+    human/sentence-scores
+ 
+########################################################################################
+The contents of each file are described below. The formality and complexity directories
+are exactly parallel, but both are described in full, just to be excessively verbose. :-)
+
+**formality/automatic/phrase-scores
+List of words and phrases scored using the log-ratio method described in the paper. 
+The file contains the 4 columns, as follows:
+-column 1: the normalized log-ratio score. 1.0 is most formal, 0.0 is most casual
+-column 2: the phrase
+-column 3: total number of occurances of the phrase in the combined formal+casual corpora (Europarl+Switchboard)
+-column 4: total number of occurances of the phrase in the formal corpus (Europarl)
+Phrases which occured fewer than 20 times in the combined corpora were removed. 
+See "Notes and Disclaimers" below for more information.
+
+**formality/automatic/pairs
+List of scored paraphrase pairs from the paraphrase database (PPDB-XL) (see paraphrase.org). 
+The file contains the 3 columns, as follows:
+-column 1: the absolute value of the difference between the formality scores of the two phrases,
+   you can view a larger number here as a higher confidence in the difference.  
+-column 2: the more casual of the two phrases
+-column 3: the more formal of the two phrases
+
+**formality/human/phrase-scores
+List of words and phrases rated by annotators on MTurk.
+The file contains the 3 columns, as follows:
+-column 1: the mean of the 7 human scores on a scale from 1 to 100: 100 is most formal, 0 is most casual.
+-column 2: the phrase
+-column 3: the standard deviation of the human scores; you can view a smaller number here as a higher 
+   confidence in the difference.  
+
+**formality/human/pairs
+List of paraphrase pairs from PPDB rated by annotators on MTurk.
+The file contains the 4 columns, as follows:
+-column 1: the proportion of raters (out of 7) agreeing on the majority decision.
+   you can view a larger number here as a higher confidence in the difference.  
+-column 2: the more casual of the two phrases, as chosen by the majority of workers
+-column 3: the more formal of the two phrases, as chosen by the majority of workers
+-column 4: 'NA' if the majority opinion was that there is no difference  between the two phrases,
+   otherwise empty. Note that if this column is 'NA', then the order of columns 2 and 3 is irrelevant
+
+**formality/human/sentence-scores
+List of sentences rated by annotators on MTurk.
+The file contains the 4 columns, as follows:
+-column 1: the mean of the 7 human scores on a scale from 1 to 100: 100 is most formal, 0 is most casual.
+-column 2: the genre from which the sentence was taken (from the MASC corpus)
+-column 3: the sentence
+-column 4: the standard deviation of the human scores; you can view a smaller number here as a higher 
+   confidence in the difference.  
+
+#########################################
+**complexity/automatic/phrase-scores
+List of words and phrases scored using the log-ratio method described in the paper. 
+The file contains the 4 columns, as follows:
+-column 1: the normalized log-ratio score. 1.0 is most complex, 0.0 is most simple
+-column 2: the phrase
+-column 3: total number of occurances of the phrase in the combined complex+simple corpora (Wiki+SimpleWiki)
+-column 4: total number of occurances of the phrase in the complex corpus (Wiki)
+Phrases which occured fewer than 20 times in the combined corpora were removed. 
+See "Notes and Disclaimers" below for more information.
+
+**complexity/automatic/pairs
+List of scored paraphrase pairs from the paraphrase database (PPDB-XL) (see paraphrase.org). 
+The file contains the 3 columns, as follows:
+-column 1: the absolute value of the difference between the complexity scores of the two phrases,
+   you can view a larger number here as a higher confidence in the difference.  
+-column 2: the more simple of the two phrases
+-column 3: the more complex of the two phrases
+
+**complexity/human/phrase-scores
+List of words and phrases rated by annotators on MTurk.
+The file contains the 3 columns, as follows:
+-column 1: the mean of the 7 human scores on a scale from 1 to 100: 100 is most complex, 0 is most simple.
+-column 2: the phrase
+-column 3: the standard deviation of the human scores; you can view a smaller number here as a higher 
+   confidence in the difference.  
+
+**complexity/human/pairs
+List of paraphrase pairs from PPDB rated by annotators on MTurk.
+The file contains the 4 columns, as follows:
+-column 1: the proportion of raters (out of 7) agreeing on the majority decision.
+   you can view a larger number here as a higher confidence in the difference.  
+-column 2: the more simple of the two phrases, as chosen by the majority of workers
+-column 3: the more complex of the two phrases, as chosen by the majority of workers
+-column 4: 'NA' if the majority opinion was that there is no difference  between the two phrases,
+   otherwise empty. Note that if this column is 'NA', then the order of columns 2 and 3 is irrelevant
+
+**complexity/human/sentence-scores
+List of sentences rated by annotators on MTurk.
+The file contains the 4 columns, as follows:
+-column 1: the mean of the 7 human scores on a scale from 1 to 100: 100 is most complex, 0 is most simple.
+-column 2: the genre from which the sentence was taken (from the MASC corpus)
+-column 3: the sentence
+-column 4: the standard deviation of the human scores; you can view a smaller number here as a higher 
+   confidence in the difference.  
+
+###############################################################################
+Some notes and disclaimers
+
+**In general, we have found that the actual value given by the log-ratio score is not as informative 
+as the ordering in produces. Bear that in mind if you are using the scores themselves in your own
+work e.g. as features in a model.
+
+**For the log-ratio phrase scores, we elected not to require that a phrase appear in both corpora 
+in order to give it a score. Note that this adds some noise to the list by giving high scores to 
+many topic words which may or may not be characteristic of the style. A simple way of cleaning the list 
+is to exclude phrases which did not appear at least once in each corpus. This provides a slightly nicer
+looking list, although (especially on the formality dimension) eliminates many interesting examples.  
+
+**For the MTurk ratings, most cases were rated by 7 labelers. A few pairs were accidentally posted twice,
+so were rated by 14 Turkers.
