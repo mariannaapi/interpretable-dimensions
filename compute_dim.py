@@ -16,12 +16,11 @@ import random
 ####
 # seed-based method
 # averaging over seed pair vectors
-def dimension_seedbased(seeds_pos, seeds_neg, space):
+def dimension_seedbased(seeds_pos, seeds_neg, space, paired = False):
     diffvectors = [ ]
     
-    for negword in seeds_neg:
-        for posword in seeds_pos:
-            diffvectors.append(space[posword] - space[negword])
+    for negword, posword in _make_seedpairs(seeds_pos, seeds_neg, paired = paired):
+        diffvectors.append(space[posword] - space[negword])
 
     # average
     dimvec = np.mean(diffvectors, axis = 0)
@@ -146,13 +145,12 @@ def dimension_fitted_fromratings_seedwords(data_vectors, data_gold, feature_dim,
 def dimension_fitted_fromratings_seeddims(word_vectors_list, gold_ratings, feature_dim,
                                           pos_seedwords, neg_seedwords, word_vectors,
                                           do_average = True,
-                                          alpha = 0.1, random_seed = 123):
+                                          alpha = 0.1, random_seed = 123, paired = False):
 
     diffvectors = [ ]
-    
-    for negword in neg_seedwords:
-        for posword in pos_seedwords:
-            diffvectors.append(word_vectors[posword] - word_vectors[negword])
+
+    for negword, posword in _make_seedpairs(pos_seedwords, neg_seedwords, paired = paired):
+        diffvectors.append(word_vectors[posword] - word_vectors[negword])
 
     if do_average:
         seed_dims = [ torch.from_numpy(np.mean(diffvectors, axis = 0)) ]
@@ -234,7 +232,7 @@ def dimension_fitted_fromratings_seeddims(word_vectors_list, gold_ratings, featu
 def dimension_fitted_fromratings_combined(data_vectors, data_gold, feature_dim, 
                                           pos_seedwords, neg_seedwords, word_vectors,
                                           offset = 0.5, jitter = False, do_average = True,
-                                          alpha = 0.1, random_seed = 123):
+                                          alpha = 0.1, random_seed = 123, paired = False):
     # adding seed words
     
     lowvalue = min(data_gold) - offset
@@ -256,7 +254,7 @@ def dimension_fitted_fromratings_combined(data_vectors, data_gold, feature_dim,
             
     return dimension_fitted_fromratings_seeddims(thisdata_vectors, thisdata_gold, feature_dim,
                                                  pos_seedwords, neg_seedwords, word_vectors,
-                                                 do_average = do_average, alpha = alpha, random_seed = random_seed)
+                                                 do_average = do_average, alpha = alpha, random_seed = random_seed, paired = paired)
 
 ###########
 # fitted dimension, based on ratings and seed dimensions
@@ -276,13 +274,12 @@ def dimension_fitted_fromratings_combined(data_vectors, data_gold, feature_dim,
 #
 def dimension_fitted_fromratings_attseeddims(word_vectors_list, gold_ratings, feature_dim,
                                           pos_seedwords, neg_seedwords, word_vectors,
-                                          alpha = 0.1, random_seed = 123):
+                                          alpha = 0.1, random_seed = 123, paired = False):
 
     diffvectors = [ ]
     
-    for negword in neg_seedwords:
-        for posword in pos_seedwords:
-            diffvectors.append(word_vectors[posword] - word_vectors[negword])
+    for negword, posword in _make_seedpairs(pos_seedwords, neg_seedwords, paired = paired):
+        diffvectors.append(word_vectors[posword] - word_vectors[negword])
 
     seed_dims = [ torch.from_numpy(v) for v in diffvectors]
         
@@ -358,7 +355,7 @@ def dimension_fitted_fromratings_attseeddims(word_vectors_list, gold_ratings, fe
 def dimension_fitted_fromratings_attcombined(data_vectors, data_gold, feature_dim, 
                                           pos_seedwords, neg_seedwords, word_vectors,
                                           offset = 0.5, jitter = False, 
-                                          alpha = 0.1, random_seed = 123):
+                                          alpha = 0.1, random_seed = 123, paired = False):
     # adding seed words
     
     lowvalue = min(data_gold) - offset
@@ -380,7 +377,7 @@ def dimension_fitted_fromratings_attcombined(data_vectors, data_gold, feature_di
             
     return dimension_fitted_fromratings_attseeddims(thisdata_vectors, thisdata_gold, feature_dim,
                                                  pos_seedwords, neg_seedwords, word_vectors,
-                                                 alpha = alpha, random_seed = random_seed)
+                                                 alpha = alpha, random_seed = random_seed, paired = paired)
 
 ###################################
 #########
@@ -425,3 +422,17 @@ def fit_dimension_coef(gold_ratings, model_ratings):
     
     return (result.slope, result.intercept)
 
+
+#------------
+# helper functions: making pairs of seeds
+def _make_seedpairs(seeds_pos, seeds_neg, paired = False):
+    if paired:
+        return list(zip(seeds_neg, seeds_pos))
+    else:
+        pairs = [ ]
+    
+        for negword in seeds_neg:
+            for posword in seeds_pos:
+                pairs.append( (negword, posword) )
+
+        return pairs
