@@ -25,7 +25,7 @@ def pairwise_order_consistency_wrt(goldvalues, modelvalues, test_indices):
     for i1 in test_indices:
         for i2 in range(len(goldvalues)):
             if i1 == i2: continue
-            
+                
             goldrel = (goldvalues[i1] > goldvalues[i2])
             modelrel = (modelvalues[i1] > modelvalues[i2])
             outcomes.append(int(goldrel == modelrel))
