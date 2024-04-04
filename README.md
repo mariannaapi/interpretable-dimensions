@@ -38,7 +38,8 @@ Data with high annotation confidence from the Pavlick and Nenkova (2015) dataset
 * column 2: the phrase
 * column 3: the standard deviation of the human scores. A smaller number can be viewed as a higher confidence in the difference.  
 
-  **frequency_baseline/**
+
+**frequency_baseline/**
   
 	Grandetal/
  		freq_rank_sorted.[animals|cities|clothing|myth|names|professions|sports|states|weather]
