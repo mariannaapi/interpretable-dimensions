@@ -8,19 +8,19 @@ We share the data and scripts used in our experiments. These are organized in th
 **Vectors/**
 
   bert-vectors/
-      bert-large-uncased.complexity.top4layers.pkl
-	    bert-large-uncased.formality.top4layers.pkl
-	    bert-large-uncased.top4layers.Grandetal.npz
-  
+  	bert-large-uncased.Grandetal.top4layers.npz
+   	bert-large-uncased.formality.top4layers.pkl
+    	bert-large-uncased.complexity.top4layers.pkl
+	
   roberta-large-vectors/
-      roberta-large.Grandetal.top4layers.pkl
-  	  roberta-large.formality.top4layers.pkl
-  	  roberta-large.complexity.top4layers.pkl
- 
-  filtered_sentenes_ukwac/
-      extracted_ukwac_sentences_Grandetal.pkl
-    	extracted_ukwac_sentences_complexity.pkl
-  	  extracted_ukwac_sentences_formality.pkl
+	roberta-large.Grandetal.top4layers.pkl
+ 	roberta-large.formality.top4layers.pkl
+  	roberta-large.complexity.top4layers.pkl
+
+ **Sentences/**
+ 	extracted_ukwac_sentences_Grandetal.pkl
+  	extracted_ukwac_sentences_complexity.pkl
+   	extracted_ukwac_sentences_formality.pkl
  
   style-data/
       complexity/
