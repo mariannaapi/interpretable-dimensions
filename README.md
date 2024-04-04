@@ -1,7 +1,6 @@
 # Interpretable Dimensions in Space
 
 This repository contains data and code for the paper:
-
 Katrin Erk and Marianna Apidianaki (2024). Adjusting Interpretable Dimensions in Embedding Space with Human Judgments. Accepted for publication at NAACL 2024, Mexico City, Mexico.
 
 The directories contain the scripts and data necessary to run:
