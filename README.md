@@ -33,7 +33,7 @@ Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in t
 	Grand-et-al-data/
  		+++++
 
- 	Data with high annotation confidence from the Pavlick and Nenkova (2015) datasets (1,160 words for complexity, 1,274 words for formality). The filtering is described in Section 3.3 of our paper.   
+Data with high annotation confidence from the Pavlick and Nenkova (2015) datasets (1,160 words for complexity, 1,274 words for formality). The filtering is described in Section 3.3 of our paper.   
 	The file contains 3 columns, as in the Pavlicka and Nenkova (2015) dataset:
 		-- column 1: the mean of the 7 human scores on a scale from 1 to 100: 100 is most formal, 0 is most casual.
 		-- column 2: the phrase
