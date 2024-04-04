@@ -26,11 +26,7 @@ We share the data and scripts used in our experiments. These are organized in th
   **data/**
   
  	style-data/
-		complexity/	
-  			filtered_complexity_human_scores
-
-		formality/
-  			filtered_formality_human_scores
+		filtered_[complexity|formality]_human_scores
 
 	Grand-et-al-data/
  		+++++
