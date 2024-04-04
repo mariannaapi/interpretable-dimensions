@@ -30,7 +30,16 @@ We share the data and scripts used in our experiments. These are organized in th
 
 	Grand-et-al-data/
  		+++++
-      
+	
+ 	filtered_complexity_human_scores: 1,160 words with complexity annotations
+	filtered_formality_human_scores: 1,274 words with formality annotations
+
+ 	Data with high annotation confidence from the Pavlick and Nenkova (2015) formality and complexity datasets. The filtering is described in Section 3.3 of our paper.   
+	The file contains 3 columns, as in the Pavlicka and Nenkova (2015) dataset:
+		-- column 1: the mean of the 7 human scores on a scale from 1 to 100: 100 is most formal, 0 is most casual.
+		-- column 2: the phrase
+		-- column 3: the standard deviation of the human scores. A smaller number can be viewed as a higher confidence in the difference.  
+
   **frequency_baseline/**
   
 	Grandetal/
