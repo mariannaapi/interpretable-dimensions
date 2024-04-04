@@ -22,6 +22,8 @@ We share the data and scripts used in our experiments. These are organized in th
  	extracted_ukwac_sentences_Grandetal.pkl
   	extracted_ukwac_sentences_complexity.pkl
    	extracted_ukwac_sentences_formality.pkl
+
+Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in the Grand et al., formality and complexity datasets.
  
   **data/**
   
