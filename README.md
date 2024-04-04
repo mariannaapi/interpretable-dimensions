@@ -3,19 +3,10 @@
 This repository contains data and code for the paper:
 Katrin Erk and Marianna Apidianaki (2024). Adjusting Interpretable Dimensions in Embedding Space with Human Judgments. Accepted for publication at NAACL 2024, Mexico City, Mexico.
 
-The directories contain the scripts and data necessary to run:
-
-- the seed-based (SEED), fitted dimensions (FIT), fitted dimensions with seed words (FIT+SW), fitted dimensions with seeds as words and dimensions (FIT+S) models (Section 3.1 of the paper)
-- representation extraction (Section 3.3 of the paper)
-- the evaluation using the metrics described in Section 3.2 of the paper
-
-Please visit a directory to find a more detailed readme.
-
 We share the data and scripts used in our experiments. These are organized in the following directory structure:
 
-interpretable-dimensions/
-  README
-  
+**Vectors/**
+
   bert-vectors/
       bert-large-uncased.complexity.top4layers.pkl
 	    bert-large-uncased.formality.top4layers.pkl
