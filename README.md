@@ -53,11 +53,11 @@ The file contains 3 columns, as in the Pavlicka and Nenkova (2015) dataset:
         
 ** sentences/: Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in the Grand et al., formality and complexity datasets.
 
-** frequency baseline/
-  sorted
+** frequency baseline/: Words sorted in descending order based on their log-transformed frequency counts in the Google N-gram corpus (Brants and Franz, 2006). 
 
   
 === References ===
 
 Ellie Pavlick, Ani Nenkova (2015) Inducing Lexical Style Properties for Paraphrase and Genre Differentiation, Proceedings of NAACL 2015, Denver, Colorado, pages 218–224. 
 Marco Baroni, Silvia Bernardini, Adriano Ferraresi, and Eros Zanchetta (2009) The WaCky wide web: a collection of very large linguistically processed web-crawled corpora. Journal of Language Resources and Evaluation, 43(3):209–226.
+Thorsten Brants and Alex Franz (2006) Web 1T 5-gram Version 1. In LDC2006T13, Philadelphia, Pennsylvania. Linguistic Data Consortium.
