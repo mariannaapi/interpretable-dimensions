@@ -31,6 +31,9 @@ We share the data and scripts used in our experiments. These are organized in th
 
 		formality/
   			filtered_formality_human_scores
+
+	Grand-et-al-data/
+ 		+++++
       
   **frequency_baseline/**
   
