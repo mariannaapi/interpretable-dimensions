@@ -5,7 +5,7 @@ Katrin Erk and Marianna Apidianaki (2024). Adjusting Interpretable Dimensions in
 
 We share the data and scripts used in our experiments. These are organized in the following directory structure:
 
-**Vectors/**
+**vectors/**
 	
  	bert-vectors/
   		bert-large-uncased.Grandetal.top4layers.npz
@@ -17,27 +17,26 @@ We share the data and scripts used in our experiments. These are organized in th
  		roberta-large.formality.top4layers.pkl
   		roberta-large.complexity.top4layers.pkl
 
- **Sentences/**
+ **sentences/**
  
  	extracted_ukwac_sentences_Grandetal.pkl
   	extracted_ukwac_sentences_complexity.pkl
    	extracted_ukwac_sentences_formality.pkl
  
-  **Data/**
-  	
-   	style-data/
-      		complexity/
-          		human/
-              			filtered_complexity_human_scores
-      formality/
-          human/
-              filtered_formality_human_scores
+  **data/**
+	
+ 	style-data/
+		complexity/	
+  			filtered_complexity_human_scores
+
+		formality/
+  			filtered_formality_human_scores
       
-  frequency_baseline/
-      Grandetal/
-          sorted/
-      style/
-          sorted/
+  **frequency_baseline/**
+	Grandetal/
+ 		freq_rank_sorted.[animals|cities|clothing|myth|names|professions|sports|states|weather]
+	style/
+		freq_rank_sorted.[complexity|formality]
   
 
 ** The contents of each file are described below. **
