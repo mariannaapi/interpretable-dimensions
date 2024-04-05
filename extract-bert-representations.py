@@ -3,6 +3,7 @@ from transformers import BertTokenizer, BertModel, BertConfig
 import numpy as np
 import pickle
 import sys 
+import os
 import argparse
 import re
 import tqdm
@@ -12,19 +13,18 @@ import pdb
 def careful_tokenization(sentence, tokenizer, model_name, maxlen):
     bert_positions_list = []
     tok_sent = ['[CLS]']
-    for orig_token in sentence: #.split():
+    for orig_token in sentence: 
         number_bert_tokens = [len(tok_sent)]
-        bert_token = tokenizer.tokenize(orig_token) # tokenize
+        bert_token = tokenizer.tokenize(orig_token) 
 
-        ##### check if adding this token will result in >= maxlen (=, because [SEP] goes at the end). If so, stop
         if len(tok_sent) + len(bert_token) >= maxlen:
             break
 
-        tok_sent.extend(bert_token)             # append the new token(s) to the tokenized sentence
-        if len(bert_token) > 1:                 # if the word has been split into multiple wordpieces
+        tok_sent.extend(bert_token)             
+        if len(bert_token) > 1:                 
             extra = len(bert_token) - 1
             for i in range(extra):
-                number_bert_tokens.append(number_bert_tokens[-1]+1)         # list of new positions of the target word in the new tokenisation
+                number_bert_tokens.append(number_bert_tokens[-1]+1)         
                 
         bert_positions_list.append(tuple(number_bert_tokens))
 
@@ -43,16 +43,14 @@ def check_correct_token_mapping(bert_tokenized_sentence, positions, word, tokeni
     for p in bert_positions:
         berttoken.append(bert_tokenized_sentence[p])
     if berttoken == tokenized_word:
-        print('berttoken == tokenized_word', berttoken, tokenized_word)
         return True
     else:
-        print('berttoken != tokenized_word', berttoken, tokenized_word)
         return False
 
 
 
 def aggregate_wordpieces(reps_list): 
-    reps = torch.zeros([len(reps_list), 1024])              # len(reps_list) -> how many tokens in the sentence
+    reps = torch.zeros([len(reps_list), 1024])              
     for i, wrep in enumerate(reps_list):
         w, rep = wrep
         reps[i] = rep
@@ -109,7 +107,7 @@ if __name__ == '__main__':
     parser.add_argument("--output_dir", type=str, required=True, help="where to save the representations")
     # parser.add_argument("--cased", action="store_true", help="use cased or uncased model?")
 
-    # ex., python extract-bert-representations-Nov25.py --sentences extracted_ukwac_sentences.pkl --modelname bert-large --output_dir bert_embeddings
+    # Usage: python extract-bert-representations.py --sentences extracted_ukwac_sentences.pkl --modelname bert-large-uncased --output_dir bert_embeddings
 
     args = parser.parse_args()
     sentences = args.sentences
@@ -126,8 +124,7 @@ if __name__ == '__main__':
     # else: 
         # model_name = model + '-uncased'
 
-    tokenizer = BertTokenizer.from_pretrained(model_name) # do_lower_case=do_lower_case)
-    # torch.set_default_tensor_type(torch.cuda.FloatTensor)
+    tokenizer = BertTokenizer.from_pretrained(model_name) 
 
     torch.manual_seed(0)
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -137,18 +134,17 @@ if __name__ == '__main__':
     elif "base" in model_name:
         toplayer = 25
 
-    # 25 layers; the input hidden state (final hidden state of the embeddings) is included when using pytorch_transformers (but not for pytorch_pretrained_bert) => give easy access to the embeddings + 
-    # facilitate probing work using the output of the embeddings as well as the hidden states
     
     maxlen = 512
 
-    path ='/Users/marianna/Documents/NSF-Katrin/jupyter-notebooks/representations_extracted_Nov26/'
-    file_location = path + sentences
-    data = pickle.load(open(path + sentences, "rb"))
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, sentences)
+
+    data = pickle.load(open(file_path, "rb"))
 
     wordsinsentences = []
     word_count = 0
-    sentences_per_word = {}             # how many sentences per word are available
+    sentences_per_word = {}             
 
     infos = []
     final_representations = {}
@@ -169,16 +165,13 @@ if __name__ == '__main__':
                 info["sentence"] = sentence_tokens
                 info["position"] = sentence['position']
 
-
                 bert_tokenized_sentence, mapp = careful_tokenization(info["sentence"], tokenizer, model_name,maxlen=maxlen)
-                # mapp is the bert_positions_list returned by careful_tokenization function
                             
                 info["bert_tokenized_sentence"] = bert_tokenized_sentence
-                #### bert_position_list : the list with all bert positions in tuples [(1,), (2,), (3,), (4,), (5,), (6,), (7,), (8,), (9,), (10,), (11,), (12, 13, 14, 15, 16), (17,)]
  
                 if not len(info["position"]) > 1:
                     try:
-                        bert_position = mapp[info["position"][0]]                # even if there is 1 position, it's a tuple, e.g., (1,)
+                        bert_position = mapp[info["position"][0]]                
                     except IndexError:
                         pdb.set_trace()
                     info["bert_position"] = bert_position
@@ -201,14 +194,12 @@ if __name__ == '__main__':
     reps = extract_representations(infos, tokenizer, model_name, maxlen=maxlen)
     print("...DONE")
 
-    print('len reps >> ', len(reps), 'len infos', len(infos))
     if len(reps) != len(infos):
          print("Serious mismatch")
          pdb.set_trace()
     
 
     aggregated_vectors = dict()
-    # get representations of target words using their position 
     
     for rep, instance in zip(reps, infos):
         bposition = instance['bert_position']
@@ -217,19 +208,15 @@ if __name__ == '__main__':
         selected_layers = []
 
         for layer_number in rep:
-            if layer_number in [16, 21, 22, 23, 24]:            # layers: [16, 21, 22, 23, 24]; in transformers, 25 layers are output, the 24 bert layers + the embedding layer
+            if layer_number in [16, 21, 22, 23, 24]:            
                 k = "rep-"+str(layer_number)
 
                 representation = aggregate_wordpieces(rep[layer_number])
                 selected_layers.append(representation)
             
-            # mean of representations from layers 16 and top 4 in bert-large (i.e. 16, 21, 22, 23, 24)
-
         aggr_keys = aggregated_vectors.keys()
  
         if target_word in aggregated_vectors:
-            # mean of representations from layers 16 and top 4 in bert-large [16, 21, 22, 23, 24]
-            # aggregated_vectors[target_word].append(torch.mean(selected_layers, dim=0))
             aggregated_vectors[target_word].append(selected_layers)
         else:
             aggregated_vectors[target_word] = [selected_layers]
@@ -237,22 +224,13 @@ if __name__ == '__main__':
 
     for w in aggregated_vectors:
         tensors_from_examples = aggregated_vectors[w]
-        # print('length tensors_from_examples ===> ', len(tensors_from_examples))      # = number of sentences
 
-        # first average over the 5 retained layers for each sentence; then average over sentences to get the representation for a word
 
-        # mean_representation_across_layers = torch.zeros(1, 1024])
         mean_layer_reps_for_each_sentence = {}
-        for sentence_tensors in tensors_from_examples:
+        for sentence_tensors in tensors_from_examples:             
             
-            # for layer_tensor in sentence_tensors:                   
-            # Stack tensors along dimension 0
-            # Print shapes before stacking for tensor in l_tensor list
-                # print(f"Tensor shape before stacking: {layer_tensor.shape}")
-
             stacked_tensors = torch.stack(sentence_tensors, dim=0)
 
-            # Calculate the mean along dimension 0
             mean_representation = torch.mean(stacked_tensors, dim=0)
         
             if w in mean_layer_reps_for_each_sentence:
@@ -266,11 +244,19 @@ if __name__ == '__main__':
 
         stacked_tensors_mean_reps = torch.stack(list_mean_reps, dim=0)
         
-        # Calculate the mean along dimension 0
         final_representation = torch.mean(stacked_tensors_mean_reps, dim=0)
         final_representations[w] = final_representation
 
-np.savez('/Users/marianna/Documents/NSF-Katrin/jupyter-notebooks/bert_embeddings/bert-large-uncased.npz', **final_representations)
+output = './bert-embeddings'
+os.mkdir(output)
+
+np.savez((os.path.join(output, 'bert-large-uncased.npz')), **final_representations)
+
+
+
+
+
+
 
 
 
