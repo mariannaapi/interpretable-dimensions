@@ -208,7 +208,7 @@ if __name__ == '__main__':
         selected_layers = []
 
         for layer_number in rep:
-            if layer_number in [16, 21, 22, 23, 24]:            
+            if layer_number in [21, 22, 23, 24]:            
                 k = "rep-"+str(layer_number)
 
                 representation = aggregate_wordpieces(rep[layer_number])
