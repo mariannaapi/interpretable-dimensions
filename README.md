@@ -1,6 +1,7 @@
 # Interpretable Dimensions in Space
 
 This repository contains data and code for the paper:
+
 Katrin Erk and Marianna Apidianaki (2024). Adjusting Interpretable Dimensions in Embedding Space with Human Judgments. Accepted for publication at NAACL 2024, Mexico City, Mexico.
 
 We share the data and scripts used in our experiments. These are organized in the following directory structure:
@@ -19,9 +20,9 @@ We share the data and scripts used in our experiments. These are organized in th
 
  **sentences/**
  
- 	extracted_ukwac_sentences_Grandetal.pkl
-  	extracted_ukwac_sentences_complexity.pkl
-   	extracted_ukwac_sentences_formality.pkl
+ 	ukwac_sentences_Grandetal.pkl
+  	ukwac_sentences_complexity.pkl
+   	ukwac_sentences_formality.pkl
 
 Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in the Grand et al., formality and complexity datasets.
  
@@ -30,23 +31,29 @@ Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in t
  	style-data/
 		filtered_[complexity|formality]_human_scores
 
-	Grand-et-al-data/
- 		+++++
-
-Data with high annotation confidence from the Pavlick and Nenkova (2015) datasets (1,160 words for complexity, 1,274 words for formality). The filtering is described in Section 3.3 of our paper. The file contains 3 columns, as in the Pavlicka and Nenkova (2015) dataset:
+Data with high annotation confidence from the Pavlick and Nenkova (2015) datasets (1,160 words for complexity, 1,274 words for formality). The filtering is described in Section 3.3 of our paper. The file contains 3 columns:
 * column 1: the mean of the 7 human scores on a scale from 1 to 100: 100 is most formal, 0 is most casual.
 * column 2: the phrase
 * column 3: the standard deviation of the human scores. A smaller number can be viewed as a higher confidence in the difference.  
+
+	Grand-et-al-data/
+ 		category_feature.csv files (for all category-feature pairs)
+   		features.xlsx
 
 
 **frequency_baseline/**
   
 	Grandetal/
+ 		sorted
+   		unsorted
  		freq_rank_sorted.[animals|cities|clothing|myth|names|professions|sports|states|weather]
 	style/
-		freq_rank_sorted.[complexity|formality]
-  
-Words sorted in descending order based on their log-transformed frequency counts in the Google N-gram corpus (Brants and Franz, 2006). 
+ 		sorted
+   			freq_rank_sorted.[complexity|formality]
+   		unsorted
+     			freq_rank_unsorted.[complexity|formality]
+
+Log-transformed frequency counts of words in the Google N-gram corpus (Brants and Franz, 2006). 
 
   
 === References ===
