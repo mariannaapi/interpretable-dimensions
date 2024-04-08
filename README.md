@@ -77,7 +77,7 @@ python extract-contextualized-representations.py --sentences ukwac_sentences_com
  			sorted
    				freq_rank_sorted.[complexity|formality]
    			unsorted
-     				freq_rank_unsorted.[complexity|formality]
+     			freq_rank_unsorted.[complexity|formality]
 
 Log-transformed frequency counts of words in the Google N-gram corpus (Brants and Franz, 2006). 
 
