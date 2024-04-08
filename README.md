@@ -42,7 +42,7 @@ You can download GloVe embeddings from this page: https://nlp.stanford.edu/proje
   		ukwac_sentences_complexity.pkl
    		ukwac_sentences_formality.pkl
 
-Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in the Grand et al., formality and complexity datasets.
+Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in the Grand et al. (2022), formality and complexity datasets.
 
 **Extract contextualized representations**
   	
@@ -84,5 +84,7 @@ Log-transformed frequency counts of words in the Google N-gram corpus (Brants an
   
 **References**
 
+- Gabriel Grand, Idan Asher Blank, Francisco Pereira and Evelina Fedorenko (2022) Semantic projection recovers rich human knowledge of multiple object features from word embeddings. Nature Human Behaviour.
+- Ellie Pavlick and Ani Nenkova (2015) Inducing Lexical Style Properties for Paraphrase and Genre Differentiation. NAACL. 
 - Marco Baroni, Silvia Bernardini, Adriano Ferraresi, and Eros Zanchetta (2009) The WaCky wide web: a collection of very large linguistically processed web-crawled corpora. Journal of Language Resources and Evaluation, 43(3):209–226.
 - Thorsten Brants and Alex Franz (2006) Web 1T 5-gram Version 1. In LDC2006T13, Philadelphia, Pennsylvania. Linguistic Data Consortium.
