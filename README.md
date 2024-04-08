@@ -25,7 +25,7 @@ We share the data and scripts used in our experiments. These are organized in th
 		bert-vectors/
  			bert-large-uncased.Grandetal.top4layers.npz
    			bert-large-uncased.formality.top4layers.pkl
-    			bert-large-uncased.complexity.top4layers.pkl
+      			bert-large-uncased.complexity.top4layers.pkl
 	
  		roberta-large-vectors/
 			roberta-large.Grandetal.top4layers.pkl
