@@ -19,7 +19,7 @@ If you use these code and data, please make sure to cite this paper:
 
 We share the data and scripts used in our experiments. These are organized in the following directory structure:
 
-**vectors/**
+**Vectors**
 
  	vectors/
 		bert-vectors/
@@ -35,17 +35,19 @@ We share the data and scripts used in our experiments. These are organized in th
 To run the models with GloVe vectors (Pennington et al., 2014), you need to make sure to include glove.42B.300d.zip in a separate 'glove' folder. 
 You can download GloVe embeddings from this page: https://nlp.stanford.edu/projects/glove/
 
- **sentences/**
+ **Sentences**
  
- 	ukwac_sentences_Grandetal.pkl
-  	ukwac_sentences_complexity.pkl
-   	ukwac_sentences_formality.pkl
+ 	Sentences
+  		ukwac_sentences_Grandetal.pkl
+  		ukwac_sentences_complexity.pkl
+   		ukwac_sentences_formality.pkl
 
 Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in the Grand et al., formality and complexity datasets.
 
-**extract_contextualized/**
+**Extract contextualized representations**
   	
-	extract_contextualized_representations.py
+	extract_contextualized
+ 		extract_contextualized_representations.py
 
 Extract contextualized BERT or RoBERTa representations from retained ukWaC sentences (in sentences/ folder). Usage example: 
 
@@ -53,27 +55,29 @@ Extract contextualized BERT or RoBERTa representations from retained ukWaC sente
 python extract-contextualized-representations.py --sentences ukwac_sentences_complexity.pkl --modelname roberta-large --output_dir roberta_embeddings
 ```
 
-  **data/**
+  **Data**
   
- 	style-data/
-		filtered_[complexity|formality]_human_scores
+ 	data/
+  		style-data/
+			filtered_[complexity|formality]_human_scores
 
-	Grand-et-al-data/
- 		category_feature.csv files (for all category-feature pairs)
-   		features.xlsx
+		Grand-et-al-data/
+ 			category_feature.csv files (for all category-feature pairs)
+   			features.xlsx
 
 
-**frequency_baseline/**
+**Frequency_baseline**
   
-	Grandetal/
- 		sorted
-   		unsorted
- 		freq_rank_sorted.[animals|cities|clothing|myth|names|professions|sports|states|weather]
-	style/
- 		sorted
-   			freq_rank_sorted.[complexity|formality]
-   		unsorted
-     			freq_rank_unsorted.[complexity|formality]
+	frequency_baseline/
+ 		Grandetal/
+ 			sorted
+   			unsorted
+ 			freq_rank_sorted.[animals|cities|clothing|myth|names|professions|sports|states|weather]
+		style/
+ 			sorted
+   				freq_rank_sorted.[complexity|formality]
+   			unsorted
+     				freq_rank_unsorted.[complexity|formality]
 
 Log-transformed frequency counts of words in the Google N-gram corpus (Brants and Franz, 2006). 
 
