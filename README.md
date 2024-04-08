@@ -38,7 +38,14 @@ We share the data and scripts used in our experiments. These are organized in th
    	ukwac_sentences_formality.pkl
 
 Sentences from ukWaC (Baroni et al., 2009) which contain instances of words in the Grand et al., formality and complexity datasets.
- 
+
+**extract_contextualized/**
+  	
+	extract_contextualized_representations.py
+
+Extract contextualized BERT or RoBERTa representations from retained ukWaC sentences (in sentences/ folder).
+Usage example: python extract-contextualized-representations.py --sentences ukwac_sentences_complexity.pkl --modelname roberta-large --output_dir roberta_embeddings
+
   **data/**
   
  	style-data/
