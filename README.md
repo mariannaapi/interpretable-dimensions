@@ -56,7 +56,7 @@ Data with high annotation confidence from the Pavlick and Nenkova (2015) dataset
 Log-transformed frequency counts of words in the Google N-gram corpus (Brants and Franz, 2006). 
 
   
-=== References ===
+**References**
 
 - Ellie Pavlick, Ani Nenkova (2015) Inducing Lexical Style Properties for Paraphrase and Genre Differentiation, Proceedings of NAACL 2015, Denver, Colorado, pages 218–224. 
 - Marco Baroni, Silvia Bernardini, Adriano Ferraresi, and Eros Zanchetta (2009) The WaCky wide web: a collection of very large linguistically processed web-crawled corpora. Journal of Language Resources and Evaluation, 43(3):209–226.
