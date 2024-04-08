@@ -84,6 +84,5 @@ Log-transformed frequency counts of words in the Google N-gram corpus (Brants an
   
 **References**
 
-- Ellie Pavlick, Ani Nenkova (2015) Inducing Lexical Style Properties for Paraphrase and Genre Differentiation, Proceedings of NAACL 2015, Denver, Colorado, pages 218–224. 
 - Marco Baroni, Silvia Bernardini, Adriano Ferraresi, and Eros Zanchetta (2009) The WaCky wide web: a collection of very large linguistically processed web-crawled corpora. Journal of Language Resources and Evaluation, 43(3):209–226.
 - Thorsten Brants and Alex Franz (2006) Web 1T 5-gram Version 1. In LDC2006T13, Philadelphia, Pennsylvania. Linguistic Data Consortium.
