@@ -31,6 +31,9 @@ We share the data and scripts used in our experiments. These are organized in th
  		roberta-large.formality.top4layers.pkl
   		roberta-large.complexity.top4layers.pkl
 
+To run the models with GloVe vectors (Pennington et al., 2014), you need to make sure to include glove.42B.300d.zip in a separate 'glove' folder. 
+You can download GloVe embeddings from this page: https://nlp.stanford.edu/projects/glove/
+
  **sentences/**
  
  	ukwac_sentences_Grandetal.pkl
