@@ -55,6 +55,8 @@ Extract contextualized BERT or RoBERTa representations from retained ukWaC sente
 python extract-contextualized-representations.py --sentences ukwac_sentences_complexity.pkl --modelname roberta-large --output_dir roberta_embeddings
 ```
 
+In order to exactly reconstitute the results in the paper, special tokens need to be included when extracting BERT representations but not for RoBERTa. 
+
   **Data**
   
  	data/
@@ -88,3 +90,12 @@ Log-transformed frequency counts of words in the Google N-gram corpus (Brants an
 - Ellie Pavlick and Ani Nenkova (2015) Inducing Lexical Style Properties for Paraphrase and Genre Differentiation. NAACL. 
 - Marco Baroni, Silvia Bernardini, Adriano Ferraresi, and Eros Zanchetta (2009) The WaCky wide web: a collection of very large linguistically processed web-crawled corpora. Journal of Language Resources and Evaluation, 43(3):209–226.
 - Thorsten Brants and Alex Franz (2006) Web 1T 5-gram Version 1. In LDC2006T13, Philadelphia, Pennsylvania. Linguistic Data Consortium.
+
+
+**Acknowledgments**
+
+This research is supported in part by the Office of the Director of National Intelligence (ODNI), Intelligence Advanced Research Projects Activity (IARPA), via the HIATUS Program contract #2022-22072200005. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies, either expressed or implied, of ODNI, IARPA, or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for governmental purposes notwithstanding any copyright annotation therein.
+
+
+
+
