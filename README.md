@@ -58,6 +58,8 @@ python extract-contextualized-representations.py --sentences ukwac_sentences_com
 In order to exactly reconstitute the results in the paper, special tokens need to be included when extracting BERT representations but not for RoBERTa. 
 
   **Data**
+
+  The Grand et al data is available at https://osf.io/5r2sz/ 
   
  	data/
   		style-data/
