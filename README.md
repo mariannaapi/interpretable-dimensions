@@ -93,6 +93,22 @@ Log-transformed frequency counts of words in the Google N-gram corpus (Brants an
 - Marco Baroni, Silvia Bernardini, Adriano Ferraresi, and Eros Zanchetta (2009) The WaCky wide web: a collection of very large linguistically processed web-crawled corpora. Journal of Language Resources and Evaluation, 43(3):209–226.
 - Thorsten Brants and Alex Franz (2006) Web 1T 5-gram Version 1. In LDC2006T13, Philadelphia, Pennsylvania. Linguistic Data Consortium.
 
+**Notebooks and scripts**
+
+Scripts:
+* compute_dim.py: implementations of all methods for computing interpretable dimensions in space that are used in the paper, as well as methods for predicting a rating based on an interpretable dimension
+* eval_dim.py: implementations of all methods for evaluating interpretable dimensions in space that are used in the paper
+
+Notebooks:
+* grand_bert_eval.ipynb: evaluation on Grand et al concept/property data, using contextualized embeddings (BERT or RoBERTa)
+* grand_bert_hyper.ipynb: testing hyperparameters on Grand et al. data, using contextualized embeddings
+* grand_eval.ipynb: evaluation on Grand et al concept/property data, using GLoVE embeddings
+* grand_hyper.ipynb: testing hyperparameters on Grand et al. data, using GLoVE embeddings
+* grand_illustrate.ipynb: zooming in on particular Grand et al. concept/property pairs for qualitative analysis
+* grand_story.ipynb: reproducing Grand et al. results, showing overfitting in the fitted-only model, inspecting and comparing evaluation metrics, collection of results
+* pavlick_bert_eval.ipynb: evaluation on Pavlick/Nenkova stylistic data, using contextualized embeddings
+* pavlick_eval.ipynb: evaluation on Pavlick/Nenkova stylistic data, using GLoVE embeddings
+* pavlick_story.ipynb: collection of results for Pavlick/Nenkova data
 
 **Acknowledgments**
 
