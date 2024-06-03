@@ -1,0 +1,14 @@
+loadedData = load('ratingData.mat').('ratings');
+% Iterate over each field in the loaded data
+fieldNames = fieldnames(loadedData);
+for i = 1:length(fieldNames)
+    fieldName = fieldNames{i};
+    fieldValue = loadedData.(fieldName);
+    % Check if the field value is a table
+    if istable(fieldValue)
+        % Convert the table to a CSV file
+        csvFileName = [fieldName, '.csv'];
+        writetable(fieldValue, csvFileName, 'WriteRowNames', true);
+        fprintf('Saved %s to %s\n', fieldName, csvFileName);
+    end
+end
