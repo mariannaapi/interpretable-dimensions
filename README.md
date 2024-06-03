@@ -59,7 +59,7 @@ In order to exactly reconstitute the results in the paper, special tokens need t
 
   **Data**
 
-  The Grand et al data is available at https://osf.io/5r2sz/ . To create the category_feature.csv files below, you need to transform the Matlab format category/feature ratings into the CSV format. Please use the matlab2csv.py script provided above. It was created by Artemis Panagopoulou -- many thanks, Artemis!
+  The Grand et al data is available at https://osf.io/5r2sz/ . To create the category_feature.csv files below, you need to transform the Matlab format category/feature ratings into the CSV format. Please use the matlab2csv.mat script provided above. It was created by Artemis Panagopoulou -- many thanks, Artemis!
   
  	data/
   		style-data/
